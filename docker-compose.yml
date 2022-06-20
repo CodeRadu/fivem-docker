@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  cfx:
+    platform: linux/amd64
+    build: .
+    ports:
+      - '40120:40120'
+      - '30120:30120'
+      - '30120:30120/udp'
+    volumes:
+      - './data:/server/txData'
+  mariadb:
+    image: mariadb:latest
+    volumes:
+      - './database:/var/lib/mysql'
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
