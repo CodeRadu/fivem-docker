@@ -9,9 +9,11 @@ services:
       - '30120:30120/udp'
     volumes:
       - './data:/server/txData'
+    restart: 'on-failure'
   mariadb:
     image: mariadb:latest
     volumes:
       - './database:/var/lib/mysql'
     environment:
       MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
+    restart: 'on-failure'
